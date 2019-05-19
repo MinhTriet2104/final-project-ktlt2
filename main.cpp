@@ -27,6 +27,7 @@ void docDsPM();
 void xuatDsPM();
 void loading(int iTime);
 void login();
+std::string inputPassword(size_t length_max);
 int checkUsername(string sUser, string sPass);
 void menu();
 void QLPhieuMuon();
@@ -689,6 +690,45 @@ void menu() {
 	}
 }
 
+std::string inputPassword(size_t length_max)
+{
+    std::string strRet;
+    char ch = 0;
+    bool bShow = false;
+    do {
+        ch = getch();
+        if((strRet.size() < length_max) &&
+           (::isalpha(ch) || ::isalnum(ch)))
+        {
+            std::cout << (bShow ? ch : '*');
+            strRet.push_back(ch);
+        }
+        else
+        {
+            if(0x1B == ch)
+            {
+                bShow = !bShow;
+ 
+                std::cout << std::string(strRet.size(), '\b');
+           
+                if(bShow)
+                    std::cout << strRet;
+                else
+                    std::cout << std::string(strRet.size(), '*');
+               
+            }
+            if('\b' == ch && !strRet.empty())
+            {
+                std::cout << "\b \b";
+                strRet.resize(strRet.size() - 1);
+            }
+        }
+ 
+    }while ('\r' != ch);
+    std::cout << std::endl;
+    return strRet;
+}
+
 void login() {
 	SetColor(10);
 	cout << "\t\t*************************************************" << endl;
@@ -743,12 +783,8 @@ void login() {
 		char ch;
 		cout << "\t\t\t-  Password:   ";
 		SetColor(15);
-		ch = _getch();
-		while(ch != 13){
-			sPass.push_back(ch);
-			cout << '*';
-			ch = _getch();
-		}
+		sPass = inputPassword(20);
+
 		if (checkUsername(sUsername, sPass) == 1){
 			isAdmin = true;
 			SetColor(10);
