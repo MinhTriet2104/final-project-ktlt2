@@ -53,8 +53,7 @@ vector<GIAOVIEN> dsGV;
 vector<PHIEUMUON> dsPM;
 
 //chuong trinh chinh
-int main() 
-{
+int main() {
 	docDsAdmin();
 	//xuatDsAdmin();
 
@@ -123,6 +122,10 @@ void QLPhieuMuon() {
 			cout << "\n\t\tNhap so Phieu muon: ";
 			SetColor(15);
 			cin >> iSoPhieu;
+			if (iSoPhieu == -1) { 
+				system("cls");
+				QLPhieuMuon(); 
+			}
 			if (kiemTraSoPhieuMuon(iSoPhieu) == -2) {
 				SetColor(12);
 				cout << "\n\t\t\tSo phieu khong ton tai!\n\n";
@@ -211,6 +214,10 @@ void QLSach() {
 			rewind(stdin);
 			SetColor(15);
 			getline(cin, sMaSach);
+			if (sMaSach == "-1") { 
+				system("cls");
+				QLSach();
+			}
 			if (kiemTraMaSach(sMaSach) == 1)  {
 				SetColor(12);
 				cout << "\n\t\t\tMa da ton tai!\n";
@@ -231,6 +238,10 @@ void QLSach() {
 			rewind(stdin);
 			SetColor(15);
 			getline(cin, sMaSach);
+			if (sMaSach == "-1") { 
+				system("cls");
+				QLSach(); 
+			}
 			if (kiemTraTinhTrangSach(sMaSach) == -2)  {
 				SetColor(12);
 				cout << "\n\t\t\tMa sach khong ton tai!\n";
@@ -325,6 +336,10 @@ void QLBanDoc() {
 			rewind(stdin);
 			SetColor(15);
 			getline(cin, sMaBD);
+			if (sMaBD == "-1") { 
+				system("cls");
+				QLBanDoc(); 
+			}
 			if (kiemTraMaBD(sMaBD) == 1)  {
 				SetColor(12);
 				cout << "\n\t\t\tMa da ton tai!\n";
@@ -347,6 +362,10 @@ void QLBanDoc() {
 			rewind(stdin);
 			SetColor(15);
 			getline(cin, sMaBD);
+			if (sMaBD == "-1") { 
+				system("cls");
+				QLBanDoc();
+			}
 			if (kiemTraMaBD(sMaBD) == 1)  {
 				SetColor(12);
 				cout << "\n\t\t\tMa da ton tai!\n";
@@ -568,6 +587,10 @@ void menuTK() {
 		rewind(stdin);
 		SetColor(15);
 		getline(cin, sMaSach);
+		if (sMaSach == "-1") { 
+			system("cls");
+			menuTK(); 
+		}
 		for (int i = 0; i < dsSach.size(); i++) {
 			if (dsSach[i].getMasach() == sMaSach) {
 				cout << endl;
@@ -591,6 +614,10 @@ void menuTK() {
 		rewind(stdin);
 		SetColor(15);
 		getline(cin, sMaBD);
+		if (sMaBD == "-1") { 
+			system("cls");
+			menuTK(); 
+		}
 		for (int i = 0; i < dsSV.size(); i++) {
 			if (dsSV[i].getMabandoc() == sMaBD) {
 				cout << endl;
@@ -930,6 +957,10 @@ void ghiMoiPM() {
 		rewind(stdin);
 		SetColor(15);
 		getline(cin, sMaBD);
+		if (sMaBD == "-1") { 
+			system("cls");
+			QLPhieuMuon(); 
+		}
 		if (kiemTraMaBD(sMaBD) == 0) {
 			SetColor(12);
 			cout << "\n\t\t\tMa Ban doc khong ton tai!\n\n";
@@ -942,6 +973,10 @@ void ghiMoiPM() {
 		rewind(stdin);
 		SetColor(15);
 		getline(cin, sMaSach);
+		if (sMaSach == "-1") { 
+			system("cls");
+			QLPhieuMuon(); 
+		}
 		if (kiemTraMaSach(sMaSach) == 0) {
 			SetColor(12);
 			cout << "\n\t\t\tMa Sach khong ton tai!\n\n";
